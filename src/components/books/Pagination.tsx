@@ -1,0 +1,64 @@
+import React from "react";
+import { Pagination as IPagenation } from "../../model/pagination.model";
+import { LIMIT } from "../../constants/pagination";
+import styled from "styled-components";
+import Button from "../common/Button";
+import { useSearchParams } from "react-router-dom";
+import { QUERYSTRING } from "../../constants/querystring";
+
+interface Props {
+  pagination: IPagenation;
+}
+
+export default function Pagination({
+  pagination: { totalCount, currentPage },
+}: Props) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pages = Math.ceil(totalCount / LIMIT);
+
+  const handleClickPage = (page: number) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set(QUERYSTRING.PAGE, String(page));
+
+    setSearchParams(newSearchParams);
+  };
+
+  return (
+    <PaginationStyle>
+      {pages > 0 ? (
+        <ol>
+          {Array(pages)
+            .fill(0)
+            .map((_, index) => (
+              <li key={index}>
+                <Button
+                  size="small"
+                  scheme={currentPage === index + 1 ? "primary" : "normal"}
+                  onClick={() => handleClickPage(index + 1)}
+                >
+                  {index + 1}
+                </Button>
+              </li>
+            ))}
+        </ol>
+      ) : (
+        ""
+      )}
+    </PaginationStyle>
+  );
+}
+
+const PaginationStyle = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 24px 0;
+
+  ol {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+`;

@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import { BookStoreThemeProvider } from "./context/themeContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Signup from "./pages/Signup";
+import ResetPassword from "./pages/ResetPassword";
+import Login from "./pages/Login";
+import Books from "./pages/Books";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +22,7 @@ const router = createBrowserRouter([
     path: "/books",
     element: (
       <Layout>
-        <Home />
+        <Books />
       </Layout>
     ),
   },
@@ -28,6 +31,22 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <Signup />
+      </Layout>
+    ),
+  },
+  {
+    path: "/reset",
+    element: (
+      <Layout>
+        <ResetPassword />
+      </Layout>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <Layout>
+        <Login />
       </Layout>
     ),
   },

@@ -1,18 +1,19 @@
-import styled from "styled-components";
 import Title from "../components/common/Title";
 import InputText from "../components/common/InputText";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { signup } from "../api/auth.api";
+import { login, signup } from "../api/auth.api";
 import { useAlert } from "../hooks/useAlert";
+import { SignupStyle } from "./Signup";
+import { useAuthStore } from "../store/authStore";
 
 export interface SignupProps {
   email: string;
   password: string;
 }
 
-export default function Signup() {
+export default function Login() {
   const {
     register,
     handleSubmit,
@@ -21,17 +22,27 @@ export default function Signup() {
   const navigate = useNavigate();
   const showAlert = useAlert();
 
+  const { storeLogin, isloggedIn, storeLogout } = useAuthStore();
+
   const onSubmit = (data: SignupProps) => {
-    signup(data).then((response) => {
-      console.log("야");
-      showAlert("회원가입이 완료되었습니다.");
-      navigate("/login");
-    });
+    login(data).then(
+      (response) => {
+        console.log(response.token);
+        storeLogin(response.token);
+
+        showAlert("로그인이 완료되었습니다.");
+        navigate("/");
+      },
+      (error) => {
+        console.log(error);
+        showAlert("로그인에 실패했습니다.");
+      }
+    );
   };
 
   return (
     <>
-      <Title size="large">회원가입</Title>
+      <Title size="large">로그인</Title>
       <SignupStyle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
@@ -60,7 +71,7 @@ export default function Signup() {
           </fieldset>
           <fieldset>
             <Button size="medium" scheme="primary" type="submit">
-              회원가입
+              로그인
             </Button>
           </fieldset>
         </form>
@@ -71,29 +82,3 @@ export default function Signup() {
     </>
   );
 }
-
-export const SignupStyle = styled.div`
-  max-width: ${({ theme }) => theme.layout.width.small};
-  margin: 80px auto;
-
-  fieldset {
-    border: 0;
-    padding: 0 0 8px 0;
-    .error-text {
-      color: crimson;
-    }
-  }
-
-  input {
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .info {
-    text-align: center;
-    padding: 16px 0 0 0;
-  }
-`;
