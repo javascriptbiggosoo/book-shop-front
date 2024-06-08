@@ -22,7 +22,7 @@ export default function Login() {
   const navigate = useNavigate();
   const showAlert = useAlert();
 
-  const { storeLogin, isloggedIn, storeLogout } = useAuthStore();
+  const { storeLogin, isLoggedIn: isloggedIn, storeLogout } = useAuthStore();
 
   const onSubmit = (data: SignupProps) => {
     login(data).then(
@@ -50,6 +50,7 @@ export default function Login() {
               inputType="email"
               placeholder="이메일을 입력해주세요"
               {...register("email", { required: true })}
+              defaultValue={"jasfng@mail.coco"}
             />
             {errors.email && (
               <p>
@@ -59,6 +60,7 @@ export default function Login() {
           </fieldset>
           <fieldset>
             <InputText
+              defaultValue={`4444`}
               inputType="password"
               placeholder="비밀번호를 입력해주세요"
               {...register("password", { required: true })}

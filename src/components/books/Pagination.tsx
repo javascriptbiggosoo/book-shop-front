@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination as IPagenation } from "../../model/pagination.model";
+import { Pagination as IPagenation } from "../../models/pagination.model";
 import { LIMIT } from "../../constants/pagination";
 import styled from "styled-components";
 import Button from "../common/Button";

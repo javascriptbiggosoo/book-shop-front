@@ -8,7 +8,7 @@ import { useAuthStore } from "../../store/authStore";
 
 export default function Header() {
   const { category } = useCategory();
-  const { isloggedIn, storeLogout } = useAuthStore();
+  const { isLoggedIn: isloggedIn, storeLogout } = useAuthStore();
 
   return (
     <HeaderStyle>

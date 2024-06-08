@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BookItem from "./BookItem";
-import { Book } from "../../model/book.model";
+import { Book } from "../../models/book.model";
 import { useLocation } from "react-router-dom";
 import { QUERYSTRING } from "../../constants/querystring";
 import { ViewMode } from "./BooksViewSwitcher";

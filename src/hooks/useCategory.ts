@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Category } from "../model/category.model";
+import { Category } from "../models/category.model";
 import { fetchCategory } from "../api/category.api";
 import { useLocation } from "react-router-dom";
 import { QUERYSTRING } from "../constants/querystring";

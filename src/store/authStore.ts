@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface StoreState {
-  isloggedIn: boolean;
+  isLoggedIn: boolean;
   storeLogin: (token: string) => void;
   storeLogout: () => void;
 }
@@ -20,13 +20,13 @@ export const removeToken = () => {
 };
 
 export const useAuthStore = create<StoreState>((set) => ({
-  isloggedIn: getToken() ? true : false,
+  isLoggedIn: getToken() ? true : false,
   storeLogin: (token: string) => {
     setToken(token);
-    set({ isloggedIn: true });
+    set({ isLoggedIn: true });
   },
   storeLogout: () => {
     removeToken();
-    set({ isloggedIn: false });
+    set({ isLoggedIn: false });
   },
 }));
