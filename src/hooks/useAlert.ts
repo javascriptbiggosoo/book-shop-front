@@ -1,9 +1,15 @@
 import { useCallback } from "react";
 
 export const useAlert = () => {
-  const shwoAlert = useCallback((message: string) => {
-    alert(message);
+  const showAlert = useCallback((message: string) => {
+    window.alert(message);
   }, []);
 
-  return shwoAlert;
+  const showConfirm = useCallback((message: string, onConfirm: () => void) => {
+    if (window.confirm(message)) {
+      onConfirm();
+    }
+  }, []);
+
+  return { showAlert, showConfirm };
 };

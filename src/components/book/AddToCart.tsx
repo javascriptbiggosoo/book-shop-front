@@ -3,7 +3,7 @@ import styled from "styled-components";
 import InputText from "../common/InputText";
 import Button from "../common/Button";
 import { BookDetail } from "../../models/book.model";
-import { addCart } from "../../api/cart.api";
+import { addCart } from "../../api/carts.api";
 import { useAlert } from "../../hooks/useAlert";
 import { Link } from "react-router-dom";
 import { useBook } from "../../hooks/useBook";

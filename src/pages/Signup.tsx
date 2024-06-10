@@ -19,7 +19,7 @@ export default function Signup() {
     formState: { errors },
   } = useForm<SignupProps>();
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const onSubmit = (data: SignupProps) => {
     signup(data).then((response) => {

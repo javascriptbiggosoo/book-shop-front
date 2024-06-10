@@ -3,13 +3,13 @@ import { BookDetail } from "../models/book.model";
 import { fetchbook, likeBook, unLikeBook } from "../api/books.api";
 import { useAuthStore } from "../store/authStore";
 import { useAlert } from "./useAlert";
-import { addCart } from "../api/cart.api";
+import { addCart } from "../api/carts.api";
 
 export const useBook = (bookId: string | undefined) => {
   const [book, setBook] = useState<BookDetail | null>(null);
   const [cartAdded, setCartAdded] = useState(false);
   const { isLoggedIn } = useAuthStore();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
   const likeToggle = () => {
     if (!isLoggedIn) {
       showAlert("로그인이 필요합니다.");
