@@ -8,13 +8,12 @@ export interface Order {
   contact: string;
   created_at: string;
 }
-
 export interface OrderSheet {
   items: number[];
-  totalQuantity: number;
-  totalPrice: number;
-  firstBookTitle: string;
-  deliveryId: number;
+  total_quantity: number;
+  total_price: number;
+  fisrt_book_title: string;
+  delivery: Delivery;
 }
 export interface Delivery {
   address: string;
@@ -29,7 +28,7 @@ export interface OrderDetail {
 }
 
 export interface OrderDetailItem {
-  bookId: number;
+  book_id: number;
   title: string;
   author: string;
   price: number;

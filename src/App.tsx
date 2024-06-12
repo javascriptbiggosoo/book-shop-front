@@ -9,81 +9,68 @@ import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import OrderList from "./pages/OrderList";
+import Error from "./components/common/Error";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "./api/queryClient";
 
-const router = createBrowserRouter([
+const routeList = [
   {
     path: "/",
-    element: (
-      <Layout>
-        <Home />
-      </Layout>
-    ),
-    errorElement: <div>오류가 발생했습니다.</div>,
+    element: <Home />,
   },
 
   {
     path: "/books",
-    element: (
-      <Layout>
-        <Books />
-      </Layout>
-    ),
+    element: <Books />,
   },
   {
     path: "/signup",
-    element: (
-      <Layout>
-        <Signup />
-      </Layout>
-    ),
+    element: <Signup />,
   },
   {
     path: "/reset",
-    element: (
-      <Layout>
-        <ResetPassword />
-      </Layout>
-    ),
+    element: <ResetPassword />,
   },
   {
     path: "/login",
-    element: (
-      <Layout>
-        <Login />
-      </Layout>
-    ),
+    element: <Login />,
   },
   {
     path: "/book/:bookId",
-    element: (
-      <Layout>
-        <BookDetail />
-      </Layout>
-    ),
+    element: <BookDetail />,
   },
   {
     path: "/cart",
-    element: (
-      <Layout>
-        <Cart />
-      </Layout>
-    ),
+    element: <Cart />,
   },
   {
     path: "/order",
-    element: (
-      <Layout>
-        <Order />
-      </Layout>
-    ),
+    element: <Order />,
   },
-]);
+  {
+    path: "/orderlist",
+    element: <OrderList />,
+  },
+];
+
+const routes = routeList.map((route) => {
+  return {
+    ...route,
+    element: <Layout>{route.element}</Layout>,
+    errorElement: <Error />,
+  };
+});
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
-    <BookStoreThemeProvider>
-      <RouterProvider router={router} />
-    </BookStoreThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <BookStoreThemeProvider>
+        <RouterProvider router={router} />
+      </BookStoreThemeProvider>
+    </QueryClientProvider>
   );
 }
 

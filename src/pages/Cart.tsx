@@ -54,11 +54,12 @@ export default function Cart() {
       return;
     }
 
-    const orderData: Omit<OrderSheet, "deliveryId"> = {
+    const orderData: Omit<OrderSheet, "delivery"> = {
       items: checkedItems,
-      totalPrice,
-      totalQuantity,
-      firstBookTitle: carts.find((cart) => cart.id === checkedItems[0])!.title,
+      total_price: totalPrice,
+      total_quantity: totalQuantity,
+      fisrt_book_title: carts.find((cart) => cart.id === checkedItems[0])!
+        .title,
     };
 
     showConfirm("주문하시겠습니까", () => {
