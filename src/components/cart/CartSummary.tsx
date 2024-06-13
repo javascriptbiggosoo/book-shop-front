@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function CartSummary({ totalQuantity, totalPrice }: Props) {
+  console.log(totalQuantity, totalPrice);
   return (
     <CartSummaryStyle>
       <Title size="medium" color="text">
@@ -20,7 +21,7 @@ export default function CartSummary({ totalQuantity, totalPrice }: Props) {
       </dl>
       <dl>
         <dt>총 금액</dt>
-        <dd>{formatNumber(totalPrice)} 원</dd>
+        <dd>{formatNumber(+totalPrice)} 원</dd>
       </dl>
     </CartSummaryStyle>
   );

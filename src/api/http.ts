@@ -36,7 +36,7 @@ export const httpClient = createClient();
 
 type RequestMethod = "get" | "post" | "put" | "delete";
 
-export const requestHandler = async <T,R = undefined  >(
+export const requestHandler = async <R = undefined, T = unknown>(
   method: RequestMethod,
   url: string,
   payload?: T

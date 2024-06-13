@@ -61,6 +61,7 @@ export default function Cart() {
       fisrt_book_title: carts.find((cart) => cart.id === checkedItems[0])!
         .title,
     };
+    console.log("orderData", orderData);
 
     showConfirm("주문하시겠습니까", () => {
       navigate("/order", { state: orderData });

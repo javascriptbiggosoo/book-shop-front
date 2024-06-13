@@ -24,14 +24,15 @@ export default function Order() {
     setValue,
     formState: { errors },
   } = useForm<DeliveryForm>();
-  const opderDataFromCart = location.state;
-  const { totalQuantity, totalPrice, firstBookTitle } = opderDataFromCart;
+  const orderDataFromCart = location.state;
+  console.log(orderDataFromCart);
+  const { total_quantity, total_price, fisrt_book_title } = orderDataFromCart;
   const navigate = useNavigate();
 
   const handlePay = async (data: DeliveryForm) => {
     // 주문 정보를 포함한 주문서 객체를 생성
     const orderData: OrderSheet = {
-      ...opderDataFromCart, // 장바구니에서 전달된 기존 주문 데이터 포함
+      ...orderDataFromCart, // 장바구니에서 전달된 기존 주문 데이터 포함
       delivery: {
         ...data, // 배송 폼에서 전달된 데이터 포함
         address: `${data.address} ${data.detailAddress}`, // 주소와 상세 주소를 결합하여 저장
@@ -112,12 +113,15 @@ export default function Order() {
               주문 상품
             </Title>
             <strong>
-              {firstBookTitle} 등 총 {totalQuantity} 권
+              {fisrt_book_title} 등 총 {total_quantity} 권
             </strong>
           </div>
         </div>
         <div className="summary">
-          <CartSummary totalQuantity={totalQuantity} totalPrice={totalPrice} />
+          <CartSummary
+            totalQuantity={total_quantity}
+            totalPrice={total_price}
+          />
           <Button
             size="large"
             scheme="primary"
