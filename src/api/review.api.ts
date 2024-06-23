@@ -21,7 +21,8 @@ export const addBookReview = async (
   try {
     return await requestHandler<AddBookReviewResponse>(
       "post",
-      `/reviews/${bookId}`
+      `/reviews/${bookId}`,
+      review
     );
   } catch (error) {
     console.error("Add review failed:", error);
